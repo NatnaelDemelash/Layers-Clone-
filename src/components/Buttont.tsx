@@ -7,6 +7,8 @@ type ButtonProps = {
   onClick?: () => void;
   className?: string;
   children: React.ReactNode;
+  type?: "button" | "submit" | "reset";
+  size?: "sm";
 };
 
 export default function Button({
@@ -14,6 +16,8 @@ export default function Button({
   onClick,
   children,
   className,
+  type,
+  size,
 }: ButtonProps) {
   const baseClass = "border h-12 rounded-full px-6 font-medium";
   const variantClass =
@@ -21,10 +25,13 @@ export default function Button({
       ? "bg-lime-400 text-neutral-950 border-lime-400"
       : "border-white text-white bg-transparent";
 
+  const sizeClass = size === "sm" ? "h-10 text-sm" : "";
+
   return (
     <button
       onClick={onClick}
-      className={clsx(baseClass, variantClass, className)}
+      className={clsx(baseClass, variantClass, sizeClass, className)}
+      type={type}
     >
       {children}
     </button>
