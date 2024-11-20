@@ -14,8 +14,11 @@ export default function Hero() {
         <div className="absolute -top-16 -right-64 hidden lg:block">
           <Image src={designExample2Image} alt="design example image 2" />
         </div>
-        <div className="absolute">
+        <div className="absolute left-56 top-96 hidden lg:block">
           <Pointer name="Andrea" color="red" />
+        </div>
+        <div className="absolute right-80 -top-4 hidden lg:block">
+          <Pointer name="Bryan" />
         </div>
         <div className="flex justify-center">
           <div className="inline-flex py-1 px-3 bg-gradient-to-r from-purple-400 to-orange-400 text-neutral-950 rounded-full font-semibold">
