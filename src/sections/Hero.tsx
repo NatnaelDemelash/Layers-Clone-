@@ -1,8 +1,8 @@
-import Button from "@/components/Buttont";
-import designExample1Image from "../assets/images/design-example-1.png";
-import designExample2Image from "../assets/images/design-example-2.png";
-import Image from "next/image";
-import Pointer from "@/components/Pointer";
+import Button from '@/components/Buttont';
+import designExample1Image from '../assets/images/design-example-1.png';
+import designExample2Image from '../assets/images/design-example-2.png';
+import Image from 'next/image';
+import Pointer from '@/components/Pointer';
 
 export default function Hero() {
   return (
@@ -36,7 +36,7 @@ export default function Hero() {
           <input
             type="email"
             placeholder="Enter your email address"
-            className="bg-transparent px-4 md:flex-1 outline-none"
+            className="bg-transparent px-4 md:flex-1 outline-none w-full"
           />
           <Button
             variant="primary"
