@@ -1,21 +1,53 @@
+'use client';
+
 import Button from '@/components/Buttont';
 import designExample1Image from '../assets/images/design-example-1.png';
 import designExample2Image from '../assets/images/design-example-2.png';
 import Image from 'next/image';
 import Pointer from '@/components/Pointer';
+import { motion, useAnimate } from 'framer-motion';
+import { useEffect } from 'react';
 
 export default function Hero() {
+  const [leftDesignScope, leftDesignAnimate] = useAnimate();
+  const [leftPointerScope, leftPointerAnimate] = useAnimate();
+
+  useEffect(() => {
+    leftDesignAnimate([
+      [leftDesignScope.current, { opacity: 1 }, { duration: 0.5 }],
+      [leftDesignScope.current, { x: 0, y: 0 }, { duration: 0.5 }],
+    ]);
+
+    leftPointerAnimate([
+      [leftPointerScope.current, { opacity: 1 }, { duration: 0.5 }],
+      [leftPointerScope.current, { x: -100, y: 0 }, { duration: 0.5 }],
+      [
+        leftPointerScope.current,
+        { x: 0, y: [0, 16, 0] },
+        { duration: 0.5, ease: 'easeInOut' },
+      ],
+    ]);
+  }, []);
+
   return (
     <section className="py-24 overflow-x-clip">
       <div className="container relative">
-        <div className="absolute top-14 -left-32 hidden lg:block">
+        <motion.div
+          ref={leftDesignScope}
+          initial={{ opacity: 0, x: -100, y: 100 }}
+          className="absolute top-14 -left-32 hidden lg:block"
+        >
           <Image src={designExample1Image} alt="design example image 1" />
-        </div>
+        </motion.div>
+        <motion.div
+          ref={leftPointerScope}
+          initial={{ opacity: 0, x: -200, y: 100 }}
+          className="absolute left-56 top-96 hidden lg:block"
+        >
+          <Pointer name="Andrea" color="red" />
+        </motion.div>
         <div className="absolute -top-16 -right-64 hidden lg:block">
           <Image src={designExample2Image} alt="design example image 2" />
-        </div>
-        <div className="absolute left-56 top-96 hidden lg:block">
-          <Pointer name="Andrea" color="red" />
         </div>
         <div className="absolute right-80 -top-4 hidden lg:block">
           <Pointer name="Bryan" />
