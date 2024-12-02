@@ -11,6 +11,8 @@ import { useEffect } from 'react';
 export default function Hero() {
   const [leftDesignScope, leftDesignAnimate] = useAnimate();
   const [leftPointerScope, leftPointerAnimate] = useAnimate();
+  const [rightDesignScope, rightDesignAnimate] = useAnimate();
+  const [rightPointerScope, rightPointerAnimate] = useAnimate();
 
   useEffect(() => {
     leftDesignAnimate([
@@ -24,6 +26,25 @@ export default function Hero() {
       [
         leftPointerScope.current,
         { x: 0, y: [0, 16, 0] },
+        { duration: 0.5, ease: 'easeInOut' },
+      ],
+    ]);
+
+    rightDesignAnimate([
+      [rightDesignScope.current, { opacity: 1 }, { duration: 0.5, delay: 1.5 }],
+      [rightDesignScope.current, { x: 0, y: 0 }, { duration: 0.5 }],
+    ]);
+
+    rightPointerAnimate([
+      [
+        rightPointerScope.current,
+        { opacity: 1 },
+        { duration: 0.5, delay: 1.5 },
+      ],
+      [rightPointerScope.current, { x: 175, y: 0 }, { duration: 0.5 }],
+      [
+        rightPointerScope.current,
+        { x: 0, y: [0, 20, 0] },
         { duration: 0.5, ease: 'easeInOut' },
       ],
     ]);
@@ -46,12 +67,20 @@ export default function Hero() {
         >
           <Pointer name="Andrea" color="red" />
         </motion.div>
-        <div className="absolute -top-16 -right-64 hidden lg:block">
+        <motion.div
+          ref={rightDesignScope}
+          initial={{ opacity: 0, x: 100, y: 100 }}
+          className="absolute -top-16 -right-64 hidden lg:block"
+        >
           <Image src={designExample2Image} alt="design example image 2" />
-        </div>
-        <div className="absolute right-80 -top-4 hidden lg:block">
+        </motion.div>
+        <motion.div
+          ref={rightPointerScope}
+          initial={{ opacity: 0, x: 275, y: 100 }}
+          className="absolute right-80 -top-4 hidden lg:block"
+        >
           <Pointer name="Bryan" />
-        </div>
+        </motion.div>
         <div className="flex justify-center">
           <div className="inline-flex py-1 px-3 bg-gradient-to-r from-purple-400 to-orange-400 text-neutral-950 rounded-full font-semibold">
             ✨$4.5M seed raised to launch
